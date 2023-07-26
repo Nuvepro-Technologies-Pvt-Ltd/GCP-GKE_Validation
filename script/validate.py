@@ -44,7 +44,7 @@ class Activity():
 
     def testcase_check_Node_numbers(self,test_object,credentials,project_id):
         testcase_description="Check GKE Cluster Nodes Count"
-        expected_result=3
+        expected_result=1
         try:
             is_present = False
             actual = 'GKE Cluster nodes is not '+ expected_result
@@ -79,22 +79,31 @@ class Activity():
             actual = 'GKE Workload name is not '+ expected_result
             try:
                 
+                cluster_id="gke-cluster-1"
+                zone = "us-central1-c"
                 service = discovery.build('container', 'v1', credentials=credentials)
-                
-                cluster_manager_client = container_v1.ClusterManagerClient(credentials=credentials)
-                Cluster_id = "gke-cluster-1"
-                zone = "us-central1-a"
-                cluster = cluster_manager_client.get_cluster(name=f'projects/{project_id}/locations/{zone}/clusters/{Cluster-id}')
-                print (cluster.endpoint)
                 request = service.projects().zones().clusters().list(projectId=project_id, zone='-')
                 response = request.execute()  
                 if 'clusters' in response:
                     for cluster in response['clusters']:
-                        #print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
-                        if cluster['currentNodeCount'] == expected_result:
-                            is_present = True
-                            break
-                        
+                        zone = cluster['zone']
+                cluster_manager_client = container_v1.ClusterManagerClient(credentials=credentials)
+                cluster = cluster_manager_client.get_cluster(name=f'projects/{project_id}/locations/{zone}/clusters/{cluster_id}')
+                #print (cluster)
+                endpoint = cluster.endpoint
+                
+                configuration = client.Configuration()
+                configuration.host = "https://"+endpoint+":443"
+                configuration.verify_ssl = False
+                configuration.api_key = {"authorization": "Bearer " + credentials.token}
+                client.Configuration.set_default(configuration)
+                v1 = client.CoreV1Api()
+                pods = v1.list_pod_for_all_namespaces(watch=False)
+                for i in pods.items:
+                    wload = i.metadata.labels['app']
+                    if (wload == expected_result):
+                        is_present = True
+                        break
             except Exception as e:
                 is_present = False
             test_object.update_pre_result(testcase_description,expected_result)

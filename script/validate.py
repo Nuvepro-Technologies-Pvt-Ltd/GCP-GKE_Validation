@@ -27,7 +27,7 @@ class Activity():
                 if 'clusters' in response:
                     for cluster in response['clusters']:
                         if cluster['name'] == expected_result:
-                            print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
+                            #print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
                             is_present = True
                             break
             except Exception as e:
@@ -54,15 +54,10 @@ class Activity():
                 response = request.execute()  
                 if 'clusters' in response:
                     for cluster in response['clusters']:
-                        print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
+                        #print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
                         if cluster['currentNodeCount'] == expected_result:
                             is_present = True
                             break
-                        
-                cluster_manager_client = container_v1.ClusterManagerClient(credentials=credentials)
-                zone = "us-central1-a"
-                cluster = cluster_manager_client.get_cluster(name=f'projects/{project_id}/locations/{zone}/clusters/{expected_result}')
-                print (cluster.endpoint)
             except Exception as e:
                 is_present = False
             test_object.update_pre_result(testcase_description,expected_result)
@@ -95,7 +90,7 @@ class Activity():
                 response = request.execute()  
                 if 'clusters' in response:
                     for cluster in response['clusters']:
-                        print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
+                        #print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
                         if cluster['currentNodeCount'] == expected_result:
                             is_present = True
                             break

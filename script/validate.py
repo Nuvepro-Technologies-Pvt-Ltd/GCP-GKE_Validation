@@ -7,7 +7,6 @@ from googleapiclient import discovery
 from google.oauth2 import service_account
 from pprint import pprint
 from google.cloud import storage
-from google.cloud import storage_transfer_v1
 from google.cloud import container_v1
 from googleapiclient import discovery
 from google.cloud.container_v1 import ClusterManagerClient

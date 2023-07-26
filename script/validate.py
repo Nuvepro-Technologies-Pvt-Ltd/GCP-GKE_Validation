@@ -15,7 +15,7 @@ from kubernetes import client
 class Activity():
 
     def testcase_check_GKE_Cluster_name(self,test_object,credentials,project_id):
-        testcase_description="Check GKE Cluster namess"
+        testcase_description="Check GKE Cluster name"
         expected_result='gke-cluster-1'
         try:
             is_present = False
@@ -47,14 +47,13 @@ class Activity():
         expected_result=1
         try:
             is_present = False
-            actual = 'GKE Cluster nodes is not '+ expected_result
+            actual = 'GKE Cluster nodes is not '+ str(expected_result)
             try:
                 service = discovery.build('container', 'v1', credentials=credentials)
                 request = service.projects().zones().clusters().list(projectId=project_id, zone='-')
                 response = request.execute()  
                 if 'clusters' in response:
                     for cluster in response['clusters']:
-                        #print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
                         if cluster['currentNodeCount'] == expected_result:
                             is_present = True
                             break

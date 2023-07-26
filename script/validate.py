@@ -15,7 +15,7 @@ from kubernetes import client
 class Activity():
 
     def testcase_check_GKE_Cluster_name(self,test_object,credentials,project_id):
-        testcase_description="Check GKE Cluster name"
+        testcase_description="Check GKE Cluster namess"
         expected_result='gke-cluster-1'
         try:
             is_present = False

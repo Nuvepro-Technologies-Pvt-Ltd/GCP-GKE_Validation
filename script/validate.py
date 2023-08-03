@@ -37,11 +37,11 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check instance name","https://cloud.google.com/bigtable/docs/")   
+                test_object.update_result(0,expected_result,actual,"Check GKE Cluster","https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview?_ga=2.2930998.-76994253.1691030875")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
-            test_object.eval_message["testcase_check_ServiceAccount_name"]=str(e)                
+            test_object.eval_message["testcase_check_GKE_Cluster_name"]=str(e)                
 
     def testcase_check_Node_numbers(self,test_object,credentials,project_id):
         testcase_description="Check GKE Cluster Nodes Count"
@@ -65,11 +65,11 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check instance name","https://cloud.google.com/bigtable/docs/")   
+                test_object.update_result(0,expected_result,actual,"Check Node","https://cloud.google.com/kubernetes-engine/docs")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
-            test_object.eval_message["testcase_check_ServiceAccount_name"]=str(e)                
+            test_object.eval_message["testcase_check_Node_numbers"]=str(e)                
 
     def testcase_check_Workload_name(self,test_object,credentials,project_id):
         testcase_description="Check GKE Workload name"
@@ -113,11 +113,11 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check instance name","https://cloud.google.com/bigtable/docs/")   
+                test_object.update_result(0,expected_result,actual,"Check Workload name","https://cloud.google.com/kubernetes-engine/docs/")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
-            test_object.eval_message["testcase_check_ServiceAccount_name"]=str(e)                
+            test_object.eval_message["testcase_check_Workload_name"]=str(e)                
 
 def start_tests(credentials, project_id, args):
 

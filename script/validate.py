@@ -27,10 +27,12 @@ class Activity():
                 if 'clusters' in response:
                     for cluster in response['clusters']:
                         if cluster['name'] == expected_result:
-                            #print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
                             is_present = True
                             actual=expected_result
                             break
+                        else:
+                            actual = cluster['name']
+                            pass
             except Exception as e:
                 is_present = False
             test_object.update_pre_result(testcase_description,expected_result)

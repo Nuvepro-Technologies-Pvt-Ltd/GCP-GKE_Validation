@@ -29,6 +29,7 @@ class Activity():
                         if cluster['name'] == expected_result:
                             #print("%s,%s,%d" % (project_id, cluster['name'], cluster['currentNodeCount']))  
                             is_present = True
+                            actual=expected_result
                             break
             except Exception as e:
                 is_present = False
@@ -56,6 +57,7 @@ class Activity():
                     for cluster in response['clusters']:
                         if cluster['currentNodeCount'] == expected_result:
                             is_present = True
+                            actual=expected_result
                             break
             except Exception as e:
                 is_present = False
@@ -103,6 +105,7 @@ class Activity():
                     wload = i.metadata.labels['app']
                     if (wload == expected_result):
                         is_present = True
+                        actual=expected_result
                         break
             except Exception as e:
                 is_present = False

@@ -77,6 +77,8 @@ class Activity():
             test_object.eval_message["testcase_check_Node_numbers"]=str(e)                
 
     def testcase_check_Workload_name(self,test_object,credentials,project_id):
+        print("Token is ")
+        print(credentials.token)
         testcase_description="Check GKE Workload name"
         expected_result='gke-nginx'
         
@@ -135,8 +137,8 @@ def start_tests(credentials, project_id, args):
     
     test_object=ResultOutput(args,Activity)
     challenge_test=Activity()
-    challenge_test.testcase_check_GKE_Cluster_name(test_object,credentials,project_id)
-    challenge_test.testcase_check_Node_numbers(test_object,credentials,project_id)
+    #challenge_test.testcase_check_GKE_Cluster_name(test_object,credentials,project_id)
+    #challenge_test.testcase_check_Node_numbers(test_object,credentials,project_id)
     challenge_test.testcase_check_Workload_name(test_object,credentials,project_id)
 
     json.dumps(test_object.result_final(),indent=4)

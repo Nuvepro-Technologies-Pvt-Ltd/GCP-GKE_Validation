@@ -87,7 +87,8 @@ class Activity():
             actual = 'GKE Workload name is not '+ expected_result
             try:
                 
-                cluster_id="gke-cluster-1"
+                # cluster_id="gke-cluster-1"
+                cluster_id="gke-nginx-cluster”
                 zone = "us-central1-c"
                 service = discovery.build('container', 'v1', credentials=credentials)
                 request = service.projects().zones().clusters().list(projectId=project_id, zone='-')

@@ -61,6 +61,9 @@ class Activity():
                             is_present = True
                             actual=expected_result
                             break
+                        else:
+                            actual=cluster['currentNodeCount']
+                            pass
             except Exception as e:
                 is_present = False
             test_object.update_pre_result(testcase_description,expected_result)
@@ -92,7 +95,6 @@ class Activity():
                         zone = cluster['zone']
                 cluster_manager_client = container_v1.ClusterManagerClient(credentials=credentials)
                 cluster = cluster_manager_client.get_cluster(name=f'projects/{project_id}/locations/{zone}/clusters/{cluster_id}')
-                #print (cluster)
                 endpoint = cluster.endpoint
                 
                 configuration = client.Configuration()
@@ -109,6 +111,9 @@ class Activity():
                         is_present = True
                         actual=expected_result
                         break
+                    else:
+                        actual=wload
+                        pass
             except Exception as e:
                 is_present = False
             test_object.update_pre_result(testcase_description,expected_result)

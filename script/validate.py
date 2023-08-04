@@ -88,7 +88,7 @@ class Activity():
         
         try:
             # is_present = False
-            # actual = 'GKE Workload name is not '+ expected_result
+            actual = 'GKE Workload name is not '+ expected_result
             try:
                 
                 # cluster_id="gke-cluster-1"
